@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\UserController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware([
@@ -9,4 +11,15 @@ Route::middleware([
     Route::get('/health_check', static function () {
         return response()->json(['status' => 'ok']);
     });
+
+    Route::prefix('oauth')
+        ->group(base_path('routes/api/oauth.php'));
+});
+
+
+Route::middleware([
+    'auth:api',
+])->group(function() {
+    Route::prefix('users')
+        ->group(base_path('routes/api/users.php'));
 });

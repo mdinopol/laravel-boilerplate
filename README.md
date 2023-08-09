@@ -1,8 +1,9 @@
 # Laravel Boilerplate
 ## Includes:
 - Docker
+- Passport auth
 - PHPStan/csfixer
-- Passport
+- Git Workflow/Actions
 
 ## Local docker-compose deployment
 
