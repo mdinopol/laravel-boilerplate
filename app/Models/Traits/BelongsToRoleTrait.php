@@ -11,11 +11,9 @@ trait BelongsToRoleTrait
      */
     public function hasRoleAuthorization(string $role): bool
     {
-        $userRole = request()->user()->role;
-
         if ($requiredRoleForAction = Role::tryFrom($role)) {
-            return $userRole->value === $requiredRoleForAction->value ||
-                $userRole->level() > $requiredRoleForAction->level();
+            return $this->role->value === $requiredRoleForAction->value ||
+                $this->role->level() > $requiredRoleForAction->level();
         }
 
         throw new \UnexpectedValueException('Role name not found.');
