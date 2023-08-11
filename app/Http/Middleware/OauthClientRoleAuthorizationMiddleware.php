@@ -16,11 +16,13 @@ class OauthClientRoleAuthorizationMiddleware
     /**
      * Handle an incoming request.
      *
-     * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
+     * @param Request  $request
+     * @param \Closure $next
+     *
+     * @return Response|RedirectResponse|JsonResponse
      */
     public function handle(Request $request, Closure $next): Response|RedirectResponse|JsonResponse
     {
-        // All request are by default authorized
         $authorized = true;
 
         // Get client type based on request
@@ -34,7 +36,7 @@ class OauthClientRoleAuthorizationMiddleware
             /**
              * @var User|null
              */
-            $user = User::where('email', $request->get('email'))->first();
+            $user = User::where('email', $request->get('username'))->first();
 
             if ($user) {
                 // Exact role comparison

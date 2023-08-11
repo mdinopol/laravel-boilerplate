@@ -10,7 +10,7 @@ Route::controller(AccessTokenController::class)->group(function() {
     Route::middleware([
         'throttle:10,1',
         'role.login',
-    ])->group(function() {
+    ])->group(function () {
         Route::post('/token', 'issueToken');
     });
 
