@@ -7,13 +7,13 @@ use App\Enum\Role;
 trait BelongsToRoleTrait
 {
     /**
-     * @var string $role The required role for the action.
+     * @param string $role the minimum required role for the action
      */
     public function hasRoleAuthorization(string $role): bool
     {
         if ($requiredRoleForAction = Role::tryFrom($role)) {
-            return $this->role->value === $requiredRoleForAction->value ||
-                $this->role->level() > $requiredRoleForAction->level();
+            return $this->role->value === $requiredRoleForAction->value
+                || $this->role->level() > $requiredRoleForAction->level();
         }
 
         throw new \UnexpectedValueException('Role name not found.');

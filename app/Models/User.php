@@ -58,8 +58,8 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'role' => Role::class,
-        'country_code' => Country::class,
+        'role'              => Role::class,
+        'country_code'      => Country::class,
     ];
 
     public function setPasswordAttribute(string $password): void

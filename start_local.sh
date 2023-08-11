@@ -25,6 +25,7 @@ then
     if command -v cp &> /dev/null
     then
         cp -rp .github/scripts/pre-push.sh .git/hooks/pre-push
+        chmod ug+x .git/hooks/pre-push
     fi
 
     docker-compose up -d --build --wait --remove-orphans && \

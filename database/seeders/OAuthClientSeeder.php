@@ -10,11 +10,6 @@ use Illuminate\Support\Str;
 
 class OAuthClientSeeder extends Seeder
 {
-    private function isLocalOrTesting(): bool
-    {
-        return app()->isLocal() || app()->runningUnitTests();
-    }
-
     public function run(): void
     {
         DB::table('oauth_clients')->insertOrIgnore([
@@ -44,5 +39,10 @@ class OAuthClientSeeder extends Seeder
             'created_at'             => Carbon::now(),
             'updated_at'             => Carbon::now(),
         ]);
+    }
+
+    private function isLocalOrTesting(): bool
+    {
+        return app()->isLocal() || app()->runningUnitTests();
     }
 }
