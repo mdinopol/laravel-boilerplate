@@ -7,7 +7,7 @@ use App\Enum\Role;
 trait BelongsToRoleTrait
 {
     /**
-     * @var string the required role for the action
+     * @param string $role The minimum required role for the action.
      */
     public function hasRoleAuthorization(string $role): bool
     {
