@@ -72,15 +72,5 @@ jobs:
       - name: Run Tests
         run: php artisan test --coverage --min=0
 
-      - name: Upload Code Coverage to Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./clover.xml
-          flags: unit_tests
-          name: codecov-umbrella
-          fail_ci_if_error: true
-          verbose: true
-
       - name: Run Phpstan
         run: vendor/bin/phpstan --no-progress --debug --memory-limit=1G
