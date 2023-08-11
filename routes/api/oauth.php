@@ -6,7 +6,7 @@ use Laravel\Passport\Http\Controllers\AccessTokenController;
 
 Route::post('/register', [UserController::class, 'register']);
 
-Route::controller(AccessTokenController::class)->group(function() {
+Route::controller(AccessTokenController::class)->group(function () {
     Route::middleware([
         'throttle:10,1',
         'role.login',

@@ -56,7 +56,7 @@ class UserController extends Controller
     public function register(RegistrationRequest $request): User
     {
         return User::create(array_merge($request->validated(), [
-            'role' => Role::USER // Or create a config that specifies the app's default user role
+            'role' => Role::USER, // Or create a config that specifies the app's default user role
         ]));
     }
 

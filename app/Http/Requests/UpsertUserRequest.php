@@ -14,16 +14,16 @@ class UpsertUserRequest extends FormRequest
     public function rules(): array
     {
         if (
-            !($userId = $this->user?->id) &&
-            $this->isMethod('put')
+            !($userId = $this->user?->id)
+            && $this->isMethod('put')
         ) {
             $userId = $this->user()->id;
         }
 
-        $rules = (new RegistrationRequest())->rules();
-        $rules['role'] = ['required', new Enum(Role::class)];
+        $rules              = (new RegistrationRequest())->rules();
+        $rules['role']      = ['required', new Enum(Role::class)];
         $rules['user_name'] = ['required', 'string', 'unique:users,user_name,'.($userId ?? 0), 'min:1', 'max:50'];
-        $rules['email'] = ['required', 'email', 'unique:users,email,'.($userId ?? 0)];
+        $rules['email']     = ['required', 'email', 'unique:users,email,'.($userId ?? 0)];
 
         $this->setSometimeOnPut($rules);
 
